@@ -1,3 +1,0 @@
-Kita sedang belajar Python
-Tepatnya belajar memanipulasi berkas teks
-Memanipulasi berkas dengan Python sangatlah mudah!
