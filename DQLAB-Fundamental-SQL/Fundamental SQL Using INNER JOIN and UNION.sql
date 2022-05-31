@@ -8,7 +8,7 @@
 -- Kedua kolom ini untuk selanjutnya disebut sebagai kolom kunci atau key columns
 
 -- menggabungkan
-> SELECT * FROM <tabel1>, <tabel2> WHERE <kolom_key1> = <kolom_key2>;
+-- SELECT * FROM <tabel1>, <tabel2> WHERE <kolom_key1> = <kolom_key2>;
 
 -- hasil penggabungan cuma namplin baris data yang isi datanya ada di kedua key columns
 -- yang ga ada bakal di exclude
@@ -18,15 +18,19 @@
 
 -- Menggunakan Prefix Nama Tabel
 -- menambahkan alamat tabel dibelakang kolom dengan titik, bisa nentuin urutan kolom yang muncul dluan
-> SELECT <tabel1>.<kolom1>, <tabel2>.<kolom2> FROM <tabel2>, <tabel1> 
-> WHERE <kolom_key1> = <kolom_key2>;
+/*
+SELECT <tabel1>.<kolom1>, <tabel2>.<kolom2> FROM <tabel2>, <tabel1> 
+WHERE <kolom_key1> = <kolom_key2>;
+*/
 
 -- urutan tabel1 yang diprefik dluan bakal muncul sebelum yang kanan
 
 -- Memilih Satu Kolom Untuk Ditampilkan
-> SELECT <kolom> 
-> FROM <tabel1> INNER JOIN <tabel2>
-> ON <tabel1>.<kolom_key> = <tabel2>.<kolom_key>;
+/*
+SELECT <kolom> 
+FROM <tabel1> INNER JOIN <tabel2>
+ON <tabel1>.<kolom_key> = <tabel2>.<kolom_key>;
+*/
 
 /*
 - penggunaan prefik pada pada <tabel1>.<kolom_key> dan <tabel2>.<kolom_key> untuk memperjelas pada acuan INNER JOIN
@@ -37,17 +41,19 @@
 */
 
 Memilih Beberapa Kolom Untuk Ditampilkan
+/*
 > SELECT <tabel1>.<kolom1>, <tabel1>.<kolom2>, <tabel2>.<kolom1>, <tabel2>.<kolom2>
 > FROM <tabel1> INNER JOIN <tabel2>
 > ON <tabel1>.<kolom_key> = <tabel2>.<kolom_key>;
+*/
 
-- pada SELECT menggunakan prefik sesuai alamat tabelnya
-- pada ON, key kolom harus sama 
+-- pada SELECT menggunakan prefik sesuai alamat tabelnya
+-- pada ON, key kolom harus sama 
 
 -- Tugas Praktek
-> SELECT tr_penjualan.kode_transaksi, tr_penjualan.kode_pelanggan, tr_penjualan.kode_produk, ms_produk.nama_produk, ms_produk.harga, tr_penjualan.qty, tr_penjualan.qty*ms_produk.harga AS total	
-> FROM tr_penjualan INNER JOIN ms_produk			
-> ON tr_penjualan.kode_produk = ms_produk.kode_produk;	
+SELECT tr_penjualan.kode_transaksi, tr_penjualan.kode_pelanggan, tr_penjualan.kode_produk, ms_produk.nama_produk, ms_produk.harga, tr_penjualan.qty, tr_penjualan.qty*ms_produk.harga AS total	
+FROM tr_penjualan INNER JOIN ms_produk			
+ON tr_penjualan.kode_produk = ms_produk.kode_produk;	
 
 /*
 CROSS JOIN
@@ -62,25 +68,31 @@ untuk menggabungkan hasil dari 2 atau lebih SELECT - statement secara “Vertika
 jumlah kolom, tipe data sama sama, urutan posisi sama semua
 */
 
-> SELECT <kolom1>, <kolom2> FROM <tabel1>
-> UNION
-> SELECT <kolom1>, <kolom2> FROM <tabel2>;
+/*
+SELECT <kolom1>, <kolom2> FROM <tabel1>
+UNION
+SELECT <kolom1>, <kolom2> FROM <tabel2>;
+*/
 
 -- UNION pake WHERE
 
-> SELECT <kolom1>, <kolom2> FROM <tabel1>
-> WHERE <kolom_target> = 'value_target'
-> UNION
-> SELECT <kolom1>, <kolom2> FROM <tabel2>;
-> WHERE <kolom_target> = 'value_target';
+/*
+SELECT <kolom1>, <kolom2> FROM <tabel1>
+WHERE <kolom_target> = 'value_target'
+UNION
+SELECT <kolom1>, <kolom2> FROM <tabel2>;
+WHERE <kolom_target> = 'value_target';
+*/
 
 -- Menyelaraskan (Conforming) Kolom
 -- kalau posisi kolom dari kedua tabelnya beda, maka disamain pake SELECT
-> SELECT <kolom1>, <kolom2>, <kolom3>, <kolom4>
-> FROM <tabel1>
-> UNION 
-> SELECT <kolom1>, <kolom2>, <kolom3>, <kolom4>
-> FROM <tabel1>;
+/*
+SELECT <kolom1>, <kolom2>, <kolom3>, <kolom4>
+FROM <tabel1>
+UNION 
+SELECT <kolom1>, <kolom2>, <kolom3>, <kolom4>
+FROM <tabel1>;
+*/
 
 -- kalau misalnya kolom yang di SELECT pertama ama kedua beda, yang dipake nama kolom dari SELECT pertama secara defaultnya
 
@@ -89,19 +101,21 @@ Perbedaan antara UNION dan JOIN
 - JOIN 
   menggabungkan tabel antar kolom (secara horizontal)
   hasil join akan menampilkan kolom dari kedua atau lebih yang digabungkan
-  penggabungan berdasarkan kolom key dengan ON */
+  penggabungan berdasarkan kolom key dengan ON 
   SELECT * FROM <tabel1>
   JOIN
   SELECT * FROM <tabel2>
-  ON <tabel1>.<kolom1> = <tabel2>.<kolom1>;
+  ON <tabel1>.<kolom1> = <tabel2>.<kolom1>; */
+  
 /*
 - UNION
   menggabungkan tabel baris/row dari dua tabel atau lebih (secara vertikal)
   ga perlu pake kolom key
-  jumlah kolom, urutan posisi kolom dan tipe data harus sama */
+  jumlah kolom, urutan posisi kolom dan tipe data harus sama 
   SELECT * FROM <tabel1>
   UNION
-  SELECT * FROM <tabel2>;
+  SELECT * FROM <tabel2>; */
+
 
 SELECT DISTINCT ms_pelanggan.kode_pelanggan, ms_pelanggan.nama_customer, ms_pelanggan.alamat, tr_penjualan.nama_produk, tr_penjualan.qty
 FROM ms_pelanggan 
